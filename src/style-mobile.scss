@@ -1,0 +1,65 @@
+/* Desktop */
+@media (min-width: 769px) {
+  #nav-toggle, #nav-close {display: none;}
+}
+
+/** Mobile */
+@media (max-width: 768px) {
+
+  body {
+
+    #nav-toggle, #nav-close {
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    #nav-toggle {
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    #controls {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -300px;
+      width: 300px;
+      border-width: 0;
+      margin: 0;
+      padding-top: 30px;
+      background-color: rgba(211, 211, 211, 0.7);
+      transition: all 0.5s;
+
+      #nav-close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+
+      .outline {
+        border-width: 0;
+
+        h2 {
+          background-color: inherit;
+        }
+      }
+    }
+
+  }
+
+
+  body.openNav {
+
+    #nav-toggle {
+      display: none;
+    }
+
+    #controls {
+      left: 0;
+    }
+
+  }
+
+}

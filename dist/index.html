@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- Progressive Web App! -->
+    <link rel="manifest" href="/lego/dist/manifest.json" />
+
+    <!-- Polyfills -->
+    <link rel="stylesheet" href="lib/default.css">
+    <script src="lib/index.min.js"></script>
+    <script>
+      MobileDragDrop.polyfill({
+        // use this to make use of the scroll behaviour
+        dragImageTranslateOverride: MobileDragDrop.scrollBehaviourDragImageTranslateOverride
+      });
+    </script>
+    <script src="lib/hammer.min.js"></script>
+
+    <!-- App code -->
+    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+  </head>
+
+  <body>
+
+    <a id="nav-toggle" href="#">&#9776;</a>
+
+    <section id="workspace">
+      <div id="lego-space">
+      </div>
+    </section>
+
+    <section id="lego-set">
+      <div class="lego-pile blue" draggable="true"></div>
+      <div class="lego-pile green" draggable="true"></div>
+      <div class="lego-pile yellow" draggable="true"></div>
+      <div class="lego-pile orange" draggable="true"></div>
+      <div class="lego-pile red" draggable="true"></div>
+      <div class="lego-pile purple" draggable="true"></div>
+    </section>
+
+    <section id="controls">
+
+      <a href="#" id="nav-close">X</a>
+
+      <div class='outline'>
+        <h2>Instructions:</h2>
+
+        <div class="instructions">
+          <div class="desc">
+            <p>Drag the legos above onto the plane to make something</p>
+            <p><span>Orbit:</span> Hold down mousewheel and drag, or press control and drag</p>
+            <p><span>Pan Up/Down:</span> Press shift and drag</p>
+            <p><span>Zoom In/Out:</span> Mousewheel up/down or press +/-</p>
+            <p><a href="https://github.com/jkoomjian/Lego-Sketchup" target="_blank">github.com/jkoomjian/Lego-Sketchup</a></p>
+            <p><span>*** Tested on Chrome &amp; Firefox ***</span></p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <template id="lego-template">
+      <div class="lego" draggable="true">
+        <div class="front face"></div>
+        <div class="back face"></div>
+        <div class="top face"></div>
+        <div class="bottom face"></div>
+        <div class="left face"></div>
+        <div class="right face"></div>
+      </div>
+    </template>
+
+    <div id="empty"></div>
+  </body>
+
+</html>

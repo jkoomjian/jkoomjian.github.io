@@ -1,0 +1,30 @@
+{
+  "name": "Lego Sketch Pad",
+  "short_name": "Lego Sketch Pad",
+  "icons": [{
+    "src": "img/lego-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }, {
+      "src": "img/lego-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }, {
+      "src": "img/lego-152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    }, {
+      "src": "img/lego-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }, {
+      "src": "img/lego-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }],
+  "start_url": "/lego/dist/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#3E4EB8",
+  "theme_color": "#2F3BA2"
+}

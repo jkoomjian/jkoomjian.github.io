@@ -1,0 +1,174 @@
+// Colors
+$lego-board-color: rgba(235, 252, 204, 1);
+$lego-blue: #0582ff;
+$lego-green: #00ad41;
+$lego-yellow: #f8d404;
+$lego-orange: #ff7c0a;
+$lego-red: #f8272a;
+$lego-purple: #f34ed0;
+
+$lego-names-colors: (blue: $lego-blue, green: $lego-green, yellow: $lego-yellow, orange: $lego-orange, red: $lego-red, purple: $lego-purple);
+
+
+// Units
+$normal-font-size: 16px;
+// $rem = the width of 1 lego/square (39.6px at 1600px wide)
+$rem: 2.475vw;
+$lego-space-side: 25rem;
+
+@mixin lego-pile($lego-color) {
+    background-color: $lego-color; border-color: darken($lego-color, 10%);
+}
+
+#workspace, #workspace * {box-sizing: border-box;}
+html {font-size: $rem;}
+body {margin: 0;}
+a {text-decoration: none; color: black;}
+
+#workspace {
+  margin: 0 auto;
+  width: 100%; height: 16.5rem;
+  max-width: 1200px;
+
+  #lego-space {
+    position: absolute; top: 0; left: calc(50% - #{$lego-space-side / 2});
+    width: $lego-space-side; height: $lego-space-side - 5rem;
+    perspective: 2000px;
+    perspective-origin: 60% top;
+    transform-style:preserve-3d;
+    // transform: rotateX(-10deg) rotateY(-15deg);
+  }
+}
+
+.plane {
+  position: absolute; top: 5%; left: 33%;
+  width: 10rem;
+  background-color: rgba(237,237,237,0.25);
+  transform-origin: bottom left;
+  transform-style: preserve-3d;
+
+  .row {
+    height: 1rem;
+  }
+
+  .cell {
+    display: inline-block; position: relative;
+    width: 1rem;
+    height: 1rem;
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+  }
+  .cell:first-of-type {border-left:1px solid lightgray;}
+  .row:first-of-type .cell {border-top:1px solid lightgray;}
+  .axis {
+    transform-origin: bottom left;
+    background-color: lightgray; margin: 0; padding: 0; border-width: 0;
+    width: 13rem; height: 1px;
+    position: absolute; left: 0; bottom: 0;
+  }
+  .cell.active {background-color: darken($lego-board-color, 30%);}
+
+}
+
+.point {background-color: blue; position: absolute; width: 5px; height: 5px;}
+
+// .plane-x * {border-color: red !important;}
+// .plane-z * {border-color: gray !important;}
+.plane-x  {
+  background-color: $lego-board-color;
+  .cell:before, .cell:after {
+    $lego-knob-width: 0.4em;
+    $lego-knob-margin: (0.5em - $lego-knob-width) / 2;
+    content: '';
+    width: $lego-knob-width;
+    height: $lego-knob-width;
+    display: block;
+    background-color: #dcfaa5;
+    box-shadow: $lego-knob-width 0 0 0 #dcfaa5;
+    border-radius: 50%;
+    margin: $lego-knob-margin 0 $lego-knob-margin $lego-knob-margin
+  }
+}
+
+.lego {
+  position: absolute; top: 0; left: 0; width: 1rem; height: 1rem;
+  transform-style: preserve-3d;
+  transition: 0.5s transform, 0.2s left, 0.2s top; cursor: grab;
+
+  & > div {
+    position: absolute;
+    width: 1rem; height: 1rem;
+    opacity: .7;
+
+    &.front {transform: translateZ(-1rem);}
+    &.back {transform: translateZ(0rem);}
+    &.top {transform-origin: top; transform: rotateX(-90deg);}
+    &.bottom {transform-origin: bottom; transform: rotateX(90deg);}
+    &.left {transform-origin: left; transform: rotateY(90deg);}
+    &.right {transform-origin: right; transform: rotateY(-90deg);}
+  }
+
+  @each $color-name, $color-value in $lego-names-colors {
+    &.#{$color-name} > div {background-color: $color-value; border: 1px solid darken($color-value, 10%);}
+  }
+}
+
+%details {width: 66%; max-width: 800px; margin-left: auto; margin-right: auto;}
+
+#lego-set {
+  @extend %details;
+  text-align: center;
+  .lego-pile {
+      display: inline-block; width: 1rem; height: 1rem;
+      margin: .33em;
+      border-width: 3px; border-style: solid;
+      position: relative; cursor: grab;
+      &:before, &:after {
+          content: '';
+          display: block;
+          position: absolute; top: -.2rem;
+          height: .2rem; width: 33%;
+      }
+      &:before {left: .1rem;}
+      &:after {right: .1rem;}
+
+      @each $color-name, $color-value in $lego-names-colors {
+        &.#{$color-name}, &.#{$color-name}:before, &.#{$color-name}:after {@include lego-pile($color-value);}
+      }
+  }
+}
+
+#controls {
+  @extend %details;
+  z-index: 10;
+  text-align: center;
+  margin-top: 50px;
+
+  .outline {
+    display: inline-block;
+    text-align: left;
+    border-width: 2px;
+    border-style: groove;
+    border-color: threedface;
+    border-image: initial;
+
+    h2 {
+      font-size: 25px;
+      background-color: white;
+      padding: 0 1rem;
+      margin: 0;
+      display: inline-block;
+      transform: translate(20px, -17px);
+    }
+
+    .instructions {
+      color: #37474f; font-size: 15px;
+      .desc {
+        p {margin: 0.5em 0 0.5em 0.5em}
+        span {color: black; font-size: 16px;}
+      }
+    }
+  }
+}
+
+#empty {position: absolute; left: 0; right: 0; width: 0; height: 0;}
