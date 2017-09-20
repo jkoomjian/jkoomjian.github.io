@@ -1,7 +1,7 @@
 (function() {
   const CACHE_NAME = 'lego-sketch-pad-cache-v1';
   const urlsToCache = [
-    '/lego/dist/',
+    '/dist/',
     'lib/default.css',
     'lib/index.min.js',
     'lib/hammer.min.js',
