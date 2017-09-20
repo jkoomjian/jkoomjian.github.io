@@ -22,7 +22,7 @@
       "sizes": "256x256",
       "type": "image/png"
     }],
-  "start_url": "/lego/dist/",
+  "start_url": "/dist/",
   "display": "standalone",
   "orientation": "landscape",
   "background_color": "#3E4EB8",

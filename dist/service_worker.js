@@ -2,7 +2,7 @@
 
 (function () {
   var CACHE_NAME = 'lego-sketch-pad-cache-v1';
-  var urlsToCache = ['/lego/dist/', 'lib/default.css', 'lib/index.min.js', 'lib/hammer.min.js', 'style.css', 'main.js', 'manifest.json'];
+  var urlsToCache = ['/dist/', 'lib/default.css', 'lib/index.min.js', 'lib/hammer.min.js', 'style.css', 'main.js', 'manifest.json'];
 
   // Runs when the worker is first installed
   self.addEventListener('install', function (event) {
